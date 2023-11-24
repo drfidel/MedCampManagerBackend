@@ -1,9 +1,6 @@
 # MedCampManagerBackend
 MediCampManagerBack end is a standalone Backend service that shall handle and store user and customer data for the Medical Camp manager Application.
 
-
-# Teachers Hub Frontend
-
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 ## About
