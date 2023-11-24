@@ -42,22 +42,22 @@ virtualenv venv
 
 - open virtualenvironment
 In windows
-venv\scripts\activate
+`venv\scripts\activate`
 
 - In Linux
-source venv/bin/activate
+`source venv/bin/activate`
 
 - install dependencies in virtual dev environment
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 - update dependencies list
-pip freeze -> requirements.txt
+`pip freeze -> requirements.txt`
 
 - run the developement server
-cd medcampsite_be
-python manage.py runserver
+`cd medcampsite_be`
+`python manage.py runserver`
 
-- Navigate to `http://localhost:8000/api/ver1/index` to view the running application and get started
+- Navigate to `http://localhost:8000/api/v1/index` to view the running application and get started
 
 ## Deployment
 
