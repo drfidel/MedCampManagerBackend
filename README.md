@@ -37,23 +37,23 @@ How would someone use what you have built, include URLs to the deployed app, ser
 
 - Clone this repository by running `git clone `
 
--create Virtual developer project environment
+- create Virtual developer project environment
 virtualenv venv
 
--open virtualenvironment
+- open virtualenvironment
 In windows
 venv\scripts\activate
 
-In Linux
+- In Linux
 source venv/bin/activate
 
--install dependencies in virtual dev environment
+- install dependencies in virtual dev environment
 pip install -r requirements.txt
 
--update dependencies list
+- update dependencies list
 pip freeze -> requirements.txt
 
--run the developement server
+- run the developement server
 cd medcampsite_be
 python manage.py runserver
 
