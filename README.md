@@ -1,2 +1,118 @@
 # MedCampManagerBackend
 MediCampManagerBack end is a standalone Backend service that shall handle and store user and customer data for the Medical Camp manager Application.
+
+
+# Teachers Hub Frontend
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+
+## About
+
+The purpose of this project is to help digitise medical camps to enable their activity as an adjunct to the medical service delivery. Its targets are [is] to span a variety of challenges related to preparation and successful execution of medical camps and provide the necessary data required for research and planning at the MoH levels.
+
+This project addresses the following SDG targets:
+
+- reduce the global maternal mortality ratio to less than 70 per 100,000 live births
+
+- end preventable deaths of newborns and children under 5 years of age, with all countries aiming to reduce neonatal mortality to at least as low as 12 per 1,000 live births and under-5 mortality to at least as low as 25 per 1,000 live births
+
+- By 2030, end the epidemics of AIDS, tuberculosis, malaria and neglected tropical diseases and combat hepatitis, water-borne diseases and other communicable diseases
+
+- reduce by one third premature mortality from non-communicable diseases through prevention and treatment and promote mental health and well-being
+
+- Strengthen the prevention and treatment of substance abuse, including narcotic drug abuse and harmful use of alcohol
+
+- ensure universal access to sexual and reproductive health-care services, including for family planning, information and education, and the integration of reproductive health into national strategies and programmes
+
+- Achieve universal health coverage, including financial risk protection, access to quality essential health-care services and access to safe, effective, quality and affordable essential medicines and vaccines for all
+
+- Substantially increase health financing and the recruitment, development, training and retention of the health workforce in developing countries, especially in least developed countries and small island developing States
+
+## Why
+
+Talk about what problem this solves, what SDG(s) and SGD targets it addresses and why these are important
+
+## Usage
+
+How would someone use what you have built, include URLs to the deployed app, service e.t.c when you have it setup
+
+## Setup
+
+- Clone this repository by running `git clone `
+
+-create Virtual developer project environment
+virtualenv venv
+
+-open virtualenvironment
+In windows
+venv\scripts\activate
+
+In Linux
+source venv/bin/activate
+
+-install dependencies in virtual dev environment
+pip install -r requirements.txt
+
+-update dependencies list
+pip freeze -> requirements.txt
+
+-run the developement server
+cd medcampsite_be
+python manage.py runserver
+
+- Navigate to `http://localhost:8000/api/ver1/index` to view the running application and get started
+
+## Deployment
+
+- This application can also be accessed at `https://"".herokuapp.com/`
+- To test out as administrator login with these credentials
+
+##API Usage
+### AUTHENTICATION
+
+| REQUEST | ROUTE              | FUNCTIONALITY    |
+| ------- | ------------------ | ---------------- |
+| POST    | api/v1/auth/login  | Logs in a user   |
+| POST    | api/v1/auth/signup | Registers a user |
+| POST    | api/v1/auth/logout | Registers a user |
+
+### PATIENTS
+
+| REQUEST | ROUTE                        | FUNCTIONALITY                             |
+| ------- | ---------------------------- | ----------------------------------------- |
+| GET     | api/v1/patients              | Fetches all patients                      |
+
+
+### USERS
+
+| REQUEST | ROUTE               | FUNCTIONALITY            |
+| ------- | ------------------- | ------------------------ |
+| GET     | api/v1/auth/profile | Fetches a user's profile |
+
+## Postman Setup for API Testing
+
+Open this collection in postman by clicking the button below:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6858a8faf4f7944f643a#?env%5Bherokuenv%5D=W3sia2V5IjoiYWRtaW5fdG9rZW4iLCJ2YWx1ZSI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5leUpwWVhRaU9qRTFOelUyTkRBME1ETXNJbTVpWmlJNk1UVTNOVFkwTURRd015d2lhblJwSWpvaVpqUXdOakF5TXpjdFlqWXlZaTAwWkRFNExXRTNZek10TnpRMllUSTVNMkl5Tnpoa0lpd2laWGh3SWpveE5UYzFOekl6TWpBekxDSnBaR1Z1ZEdsMGVTSTZleUoxYzJWeWJtRnRaU0k2SWtGa2JXbHVJaXdpY205c1pTSTZXeUpCWkcxcGJpSmRmU3dpWm5KbGMyZ2lPbVpoYkhObExDSjBlWEJsSWpvaVlXTmpaWE56SW4wLnBxS0VtX3JLX2pDSDJXTWp5UUZYNGNwNlFydGlvdUFnUnZZeGxrdkFGOGsiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InRva2VuIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
+
+If you're using Postman for testing the REST api, you can use the following setup:
+
+-   Make sure you have an environment set for your collection.
+
+-   POST to `http://localhost:8000/api/v1/auth/signup` and add your details to sign up
+
+-   POST to `http://localhost:8000/api/v1/auth/login/` to obtain token
+
+-   Paste this code in Tests which will save the token to the environment.
+
+-   In the Authorization section of your subsequent posts, set the Authorization type as Bearer Token and add {{token}}
+    in the token section
+
+
+## Authors
+
+- [Akiyo Fidel](https://github.com/drfidel)
+
+## LICENSE
+
+GNU
