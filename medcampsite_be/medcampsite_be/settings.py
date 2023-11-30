@@ -53,7 +53,14 @@ INSTALLED_APPS = [
     "corsheaders",
     'django_filters',
     'accounts.apps.AccountsConfig',
+    'drf_yasg',
+    'rest_framework.authtoken',
+    'rest_registration',
+    # 'dj_rest_auth',
+    # 'rest_email_auth',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,6 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "OPTIONS": {
+            "min_length": 8,
+        },
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -158,23 +168,53 @@ CORS_ALLOW_CREDENTIALS = True
 REST_FRAMEWORK = {
     
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    #'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' ,
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     # 'rest_framework.permissions.IsAuthenticated',
     # ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #         'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
-    #         'rest_framework.authentication.SessionAuthentication',
-    #         'rest_framework.authentication.TokenAuthentication',
-    #     ]
-    'DEFAULT_REENDERER_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+            #'rest_framework.authentication.BasicAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.TokenAuthentication',
+            # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        ],
+    'DEFAULT_RENDERER_CLASSES': [
             'rest_framework.renderers.JSONRenderer',
             'rest_framework.renderers.BrowsableAPIRenderer',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
 
 }
+
+# REST_AUTH = {
+    
+#     'USE_JWT': True,
+#     'JWT_AUTH_COOKIE': 'medcampsys-auth',
+#     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+#     'PASSWORD_RESET_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetSerializer',
+#     'PASSWORD_RESET_CONFIRM_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetConfirmSerializer',
+#     'PASSWORD_CHANGE_SERIALIZER': 'dj_rest_auth.serializers.PasswordChangeSerializer',
+# }
 
 #MANAGE MEDIA FILES
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+#EMAIL BACKENDS
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+#PASSWORDRESET
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': True,
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': True,
+    'RESET_PASSWORD_VERIFICATION_ENABLED': True,
+    'REGISTER_VERIFICATION_URL': 'http://127.0.0.1:8000/verify-user/',
+    'RESET_PASSWORD_VERIFICATION_URL': 'http://127.0.0.1:8000/reset-password/',
+    'REGISTER_EMAIL_VERIFICATION_URL': 'http://127.0.0.1:8000/verify-email/',
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
+    'USER_LOGIN_FIELDS': ['email'],
+}
+
+

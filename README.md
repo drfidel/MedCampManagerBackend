@@ -73,6 +73,7 @@ In windows
 | POST    | api/v1/auth/signup | Registers a user |
 | POST    | api/v1/auth/logout | Registers a user |
 
+
 ### PATIENTS
 
 | REQUEST | ROUTE                        | FUNCTIONALITY                             |
@@ -82,9 +83,24 @@ In windows
 
 ### USERS
 
-| REQUEST | ROUTE               | FUNCTIONALITY            |
-| ------- | ------------------- | ------------------------ |
-| GET     | api/v1/auth/profile | Fetches a user's profile |
+| REQUEST | ROUTE                         | FUNCTIONALITY            |
+| ------- | ----------------------------  | ------------------------ |
+| GET     | api/v1/auth/profile/<int:pk>  | Fetches user profile     |
+| PUT     | api/v1/auth/profile/<int:pk>  | Edits a user profile     |
+| GET     | api/v1/auth/edituser/<int:pk> | Fetches a users details |
+| PUT     | api/v1/auth/edituser/<int:pk> | Edits a user details    |
+
+### SWAGGER API DOCUMENTATION
+| REQUEST | ROUTE                        | FUNCTIONALITY            |
+| ------- | ---------------------------- | ------------------------ |
+| GET     | api/v1/swagger<format>/ | Fetches user profile          |
+| PUT     | api/v1/redoc/ | Edits a user profile                    |
+
+### ADMIN SITE
+
+| REQUEST | ROUTE                        | FUNCTIONALITY            |
+| ------- | ---------------------------- | ------------------------ |
+| GET     | api/v1/admin/                | Login to admin site      |
 
 ## Postman Setup for API Testing
 
