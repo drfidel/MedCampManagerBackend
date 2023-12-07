@@ -57,6 +57,8 @@ In windows
 `cd medcampsite_be`
 `python manage.py runserver`
 
+`python manage.py runserver --settings=medcampsite_be.settings.local`
+
 - Navigate to `http://localhost:8000/api/v1/index` to view the running application and get started
 
 ## Deployment
