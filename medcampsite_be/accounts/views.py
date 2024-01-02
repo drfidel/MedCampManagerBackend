@@ -36,7 +36,6 @@ class RegisterView(APIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    @method_decorator(csrf_exempt)
     def post(self, request):
         serializer = UserSerializer(data=request.data)    
         serializer.is_valid(raise_exception=True)
@@ -50,8 +49,7 @@ class RegisterView(APIView):
 class LoginView(APIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-    @method_decorator(csrf_exempt)
+    
     def post(self, request):
         email = request.data['email']
         password = request.data['password']
@@ -74,12 +72,11 @@ class LoginView(APIView):
                 token = Token.objects.create(user=user)
         
         serializer = UserSerializer(user)
-        return Response({'token':str(token)},status=201)
+        return Response({'token':str(token),'user': serializer.data},status=200)
 
 class LogoutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    @method_decorator(csrf_exempt)
     def post(self, request):
         logout(request)
         response = Response()

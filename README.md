@@ -38,7 +38,9 @@ How would someone use what you have built, include URLs to the deployed app, ser
 - Clone this repository by running `git clone `
 
 - create Virtual developer project environment
-virtualenv venv
+`virtualenv venv`
+
+`python3 -m venv venv`
 
 - open virtualenvironment
 In windows
@@ -57,6 +59,9 @@ In windows
 `cd medcampsite_be`
 `python manage.py runserver`
 
+`python manage.py makemigrations --settings=medcampsite_be.settings.local`
+`python manage.py migrate --settings=medcampsite_be.settings.local`
+`python manage.py createsuperuser --settings=medcampsite_be.settings.local`
 `python manage.py runserver --settings=medcampsite_be.settings.local`
 
 - Navigate to `http://localhost:8000/api/v1/index` to view the running application and get started
@@ -67,13 +72,27 @@ In windows
 - To test out as administrator login with these credentials
 
 ##API Usage
-### AUTHENTICATION
+### WEB AUTHENTICATION
 
 | REQUEST | ROUTE              | FUNCTIONALITY    |
 | ------- | ------------------ | ---------------- |
-| POST    | api/v1/auth/login  | Logs in a user   |
-| POST    | api/v1/auth/signup | Registers a user |
-| POST    | api/v1/auth/logout | Registers a user |
+| POST    | api/v1/web/auth/login  | Logs in a user   |
+| POST    | api/v1/web/auth/signup | Registers a user |
+| POST    | api/v1/web/auth/logout | Logs out a user |
+
+### MOBILE AUTHENTICATION
+
+| REQUEST | ROUTE                                   | FUNCTIONALITY                         |
+| ------- | ----------------------------------------| --------------------------------------|
+| POST    | api/v1/mob/auth/login                       | Logs in a user                        |
+| POST    | api/v1/mob/auth/signup                      | Registers a user                      |
+| POST    | api/v1/mob/auth/logout                      | Logsout a user                        |
+| POST    | api/v1/mob/auth/register-email              | registers email                       |
+| POST    | api/v1/mob/auth/verify-email                | verifies email                        |
+| POST    | api/v1/mob/auth/verify-registration         | verifies user registration            |
+| POST    | api/v1/mob/auth/send-reset-password-link    | sends password reset link             |
+| POST    | api/v1/mob/auth/change-password             | changes logged in account password    |
+| POST    | api/v1/mob/auth/reset-password              | Resets a user                         |
 
 
 ### PATIENTS
@@ -85,18 +104,20 @@ In windows
 
 ### USERS
 
-| REQUEST | ROUTE                         | FUNCTIONALITY            |
-| ------- | ----------------------------  | ------------------------ |
-| GET     | api/v1/auth/profile/<int:pk>  | Fetches user profile     |
-| PUT     | api/v1/auth/profile/<int:pk>  | Edits a user profile     |
-| GET     | api/v1/auth/edituser/<int:pk> | Fetches a users details |
-| PUT     | api/v1/auth/edituser/<int:pk> | Edits a user details    |
+| REQUEST | ROUTE                               | FUNCTIONALITY            |
+| ------- | ----------------------------        | ------------------------ |
+| GET     | api/v1/web/auth/profile/<int:pk>    | Fetches user profile     |
+| PUT     | api/v1/web/auth/profile/<int:pk>    | Edits a user profile     |
+| GET     | api/v1/web/auth/user/<int:pk>       | Fetches a users details  |
+| PUT     | api/v1/web/auth/user/<int:pk>       | Edits a users details  |
+| GET     | api/v1/mob/auth/profile/            | Fetches a users details  |
+| PUT     | api/v1/mob/auth/profile/            | Edits a users details  |
 
 ### SWAGGER API DOCUMENTATION
 | REQUEST | ROUTE                        | FUNCTIONALITY            |
 | ------- | ---------------------------- | ------------------------ |
-| GET     | api/v1/swagger<format>/ | Fetches user profile          |
-| PUT     | api/v1/redoc/ | Edits a user profile                    |
+| GET     | api/v1/swagger<format>/      | Fetches API documentation summary view          |
+| PUT     | api/v1/redoc/                | Details of API                     |
 
 ### ADMIN SITE
 
@@ -114,9 +135,13 @@ If you're using Postman for testing the REST api, you can use the following setu
 
 -   Make sure you have an environment set for your collection.
 
--   POST to `http://localhost:8000/api/v1/auth/signup` and add your details to sign up
+-   POST to `http://localhost:8000/api/v1/web/auth/signup` and add your details to sign up on WEB
 
--   POST to `http://localhost:8000/api/v1/auth/login/` to obtain token
+-   POST to `http://localhost:8000/api/v1/mob/auth/signup` and add your details to sign up on MOBILE
+
+-   POST to `http://localhost:8000/api/v1/web/auth/login/` to obtain token for WEB
+
+-   POST to `http://localhost:8000/api/v1/mob/auth/login/` to obtain token for MOBILE
 
 -   Paste this code in Tests which will save the token to the environment.
 

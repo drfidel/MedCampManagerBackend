@@ -1,0 +1,1 @@
+default_app_config = 'medcampsite_be.accounts.apps.AccountsConfig'

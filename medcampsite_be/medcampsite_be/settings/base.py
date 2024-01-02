@@ -46,26 +46,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
+    'django_rest_passwordreset',
     "corsheaders",
     'django_filters',
     'accounts.apps.AccountsConfig',
     'drf_yasg',
     'rest_framework.authtoken',
-    'rest_registration',
-    # 'dj_rest_auth',
-    # 'rest_email_auth',
+    'rest_framework_simplejwt',
+    
 ]
-
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-     "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -75,7 +79,7 @@ ROOT_URLCONF = 'medcampsite_be.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'
 
 USE_I18N = True
 
@@ -135,16 +139,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.User"
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+CUSTOM_PASSWORD_RESET_CONFIRM = 'desired URL'
 
 #cross origin management in developer mode
 CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "https://example.com",
-#     "https://sub.example.com",
-#     "http://localhost:8080",
-#     "http://127.0.0.1:3000",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:8000",
+]
 
 
 #FOR FRONT END TO GET COOKIES
@@ -154,15 +161,15 @@ CORS_ALLOW_CREDENTIALS = True
 REST_FRAMEWORK = {
     
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    #'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' ,
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' ,
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     # 'rest_framework.permissions.IsAuthenticated',
     # ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-            #'rest_framework.authentication.BasicAuthentication',
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
-            # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+            'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
         ],
     'DEFAULT_RENDERER_CLASSES': [
             'rest_framework.renderers.JSONRenderer',
@@ -173,34 +180,58 @@ REST_FRAMEWORK = {
 
 }
 
-# REST_AUTH = {
+REST_AUTH = {
     
-#     'USE_JWT': True,
-#     'JWT_AUTH_COOKIE': 'medcampsys-auth',
-#     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
-#     'PASSWORD_RESET_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetSerializer',
-#     'PASSWORD_RESET_CONFIRM_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetConfirmSerializer',
-#     'PASSWORD_CHANGE_SERIALIZER': 'dj_rest_auth.serializers.PasswordChangeSerializer',
-# }
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'medcampsys-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    'PASSWORD_RESET_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetSerializer',
+    'PASSWORD_RESET_CONFIRM_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetConfirmSerializer',
+    'PASSWORD_CHANGE_SERIALIZER': 'dj_rest_auth.serializers.PasswordChangeSerializer',
+    'JWT_AUTH_COOKIE_USE_CSRF': False,
+    'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
+    'TOKEN_CREATOR': 'dj_rest_auth.utils.default_create_token',
+    'PASSWORD_RESET_USE_SITES_DOMAIN': True,
+}
 
 #MANAGE MEDIA FILES
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+SITE_ID = 1
+
 #EMAIL BACKENDS
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'your.email.host'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'your email host user'
+# EMAIL_HOST_PASSWORD = 'your email host password'
 
 #PASSWORDRESET
-REST_REGISTRATION = {
-    'REGISTER_VERIFICATION_ENABLED': True,
-    'REGISTER_EMAIL_VERIFICATION_ENABLED': True,
-    'RESET_PASSWORD_VERIFICATION_ENABLED': True,
-    'REGISTER_VERIFICATION_URL': 'http://127.0.0.1:8000/verify-user/',
-    'RESET_PASSWORD_VERIFICATION_URL': 'http://127.0.0.1:8000/reset-password/',
-    'REGISTER_EMAIL_VERIFICATION_URL': 'http://127.0.0.1:8000/verify-email/',
-    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
-    'USER_LOGIN_FIELDS': ['email'],
+# REST_REGISTRATION = {
+#     'REGISTER_VERIFICATION_ENABLED': True,
+#     'REGISTER_EMAIL_VERIFICATION_ENABLED': True,
+#     'RESET_PASSWORD_VERIFICATION_ENABLED': True,
+#     'REGISTER_VERIFICATION_URL': 'http://127.0.0.1:8000/api/v1/mob/verify-user/',
+#     'RESET_PASSWORD_VERIFICATION_URL': 'http://127.0.0.1:8000/api/v1/mob/reset-password/',
+#     'REGISTER_EMAIL_VERIFICATION_URL': 'http://127.0.0.1:8000/api/v1/mob/verify-email/',
+#     'VERIFICATION_FROM_EMAIL': 'no-reply@medcamp.com',
+#     'USER_LOGIN_FIELDS': ['email'],
+# }
+
+REST_USE_JWT = True
+
+
+DJANGO_REST_PASSWORDRESET_NO_INFORMATION_LEAKAGE = True
+
+DJANGO_REST_PASSWORDRESET_TOKEN_CONFIG = {
+    "CLASS": "django_rest_passwordreset.tokens.RandomStringTokenGenerator",
+    "OPTIONS": {
+        "min_length": 40,
+        "max_length": 50
+    }
 }
-
-

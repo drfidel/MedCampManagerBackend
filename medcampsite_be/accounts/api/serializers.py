@@ -25,7 +25,7 @@ from django.core import exceptions
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email','password']
+        fields = ['id','username','first_name','last_name','email','password']
         extra_kwargs = {
             'password': {'write_only': True}
         }

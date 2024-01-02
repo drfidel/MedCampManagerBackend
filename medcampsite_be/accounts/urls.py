@@ -24,10 +24,13 @@ from django.urls import path, include
 from .views import RegisterView, ProfileView, LoginView, LogoutView, UserEditView
 
 urlpatterns = [
-    path('auth/register/', RegisterView.as_view()),
-    path('auth/login/', LoginView.as_view()),
-    path('auth/logout/', LogoutView.as_view()),
-    path('auth/profile/<int:pk>', ProfileView.as_view()),
-    path('auth/user/<int:pk>', UserEditView.as_view()),
+    path('register/', RegisterView.as_view()),
+    path('login/', LoginView.as_view()),
+    path('logout/', LogoutView.as_view()),
+    path('profile/<int:pk>', ProfileView.as_view()),
+    path('user/<int:pk>', UserEditView.as_view()),
+    path('password/reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path('password/reset/confirm', include('django_rest_passwordreset.urls', namespace='password_reset_confirm')),
+
 ]
 
