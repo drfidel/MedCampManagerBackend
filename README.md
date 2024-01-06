@@ -132,7 +132,7 @@ In windows
 
 Open this collection in postman by clicking the button below:
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6858a8faf4f7944f643a#?env%5Bherokuenv%5D=W3sia2V5IjoiYWRtaW5fdG9rZW4iLCJ2YWx1ZSI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5leUpwWVhRaU9qRTFOelUyTkRBME1ETXNJbTVpWmlJNk1UVTNOVFkwTURRd015d2lhblJwSWpvaVpqUXdOakF5TXpjdFlqWXlZaTAwWkRFNExXRTNZek10TnpRMllUSTVNMkl5Tnpoa0lpd2laWGh3SWpveE5UYzFOekl6TWpBekxDSnBaR1Z1ZEdsMGVTSTZleUoxYzJWeWJtRnRaU0k2SWtGa2JXbHVJaXdpY205c1pTSTZXeUpCWkcxcGJpSmRmU3dpWm5KbGMyZ2lPbVpoYkhObExDSjBlWEJsSWpvaVlXTmpaWE56SW4wLnBxS0VtX3JLX2pDSDJXTWp5UUZYNGNwNlFydGlvdUFnUnZZeGxrdkFGOGsiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InRva2VuIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6812201-86e0b5ca-2b9e-4a1c-a4f0-ab7fa633d063?action=collection%2Ffork&collection-url=entityId%3D6812201-86e0b5ca-2b9e-4a1c-a4f0-ab7fa633d063%26entityType%3Dcollection%26workspaceId%3Dc8cce30c-57cd-42ec-8792-3247f1262b77)
 
 If you're using Postman for testing the REST api, you can use the following setup:
 
