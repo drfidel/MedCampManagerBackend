@@ -79,7 +79,7 @@ In windows
 | REQUEST | ROUTE                                       | FUNCTIONALITY                                  |
 | ------- | ------------------------------------------- | ---------------------------------------------- |
 | POST    | api/v1/web/auth/login/                      | Logs in a user                                 |
-| POST    | api/v1/web/auth/signup/                     | Registers a user                               |
+| POST    | api/v1/web/auth/register/                   | Registers a user                               |
 | POST    | api/v1/web/auth/logout/                     | Logs out a user                                |
 | POST    | api/v1/web/auth/password/reset/             | sends password reset link                      |
 | POST    | api/v1/web/auth/password/reset/confirm/     | confirms password reset and sets new password  |
