@@ -1,4 +1,5 @@
 # MedCampManagerBackend
+
 MediCampManagerBack end is a standalone Backend service that shall handle and store user and customer data for the Medical Camp manager Application.
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
@@ -35,7 +36,7 @@ How would someone use what you have built, include URLs to the deployed app, ser
 
 ## Setup
 
-- Clone this repository by running `git clone `
+- Clone this repository by running `git clone`
 
 - create Virtual developer project environment
 `virtualenv venv`
@@ -71,36 +72,37 @@ In windows
 - This application can also be accessed at `https://"".herokuapp.com/`
 - To test out as administrator login with these credentials
 
-##API Usage
+## API Usage
+
 ### WEB AUTHENTICATION
 
-| REQUEST | ROUTE              | FUNCTIONALITY    |
-| ------- | ------------------ | ---------------- |
-| POST    | api/v1/web/auth/login  | Logs in a user   |
-| POST    | api/v1/web/auth/signup | Registers a user |
-| POST    | api/v1/web/auth/logout | Logs out a user |
+| REQUEST | ROUTE                                       | FUNCTIONALITY                                  |
+| ------- | ------------------------------------------- | ---------------------------------------------- |
+| POST    | api/v1/web/auth/login/                      | Logs in a user                                 |
+| POST    | api/v1/web/auth/signup/                     | Registers a user                               |
+| POST    | api/v1/web/auth/logout/                     | Logs out a user                                |
+| POST    | api/v1/web/auth/password/reset/             | sends password reset link                      |
+| POST    | api/v1/web/auth/password/reset/confirm/     | confirms password reset and sets new password  |
+| POST    | api/v1/web/auth/password/change/            | changes logged in account password             |
 
 ### MOBILE AUTHENTICATION
 
-| REQUEST | ROUTE                                   | FUNCTIONALITY                         |
-| ------- | ----------------------------------------| --------------------------------------|
-| POST    | api/v1/mob/auth/login                       | Logs in a user                        |
-| POST    | api/v1/mob/auth/signup                      | Registers a user                      |
-| POST    | api/v1/mob/auth/logout                      | Logsout a user                        |
-| POST    | api/v1/mob/auth/register-email              | registers email                       |
-| POST    | api/v1/mob/auth/verify-email                | verifies email                        |
-| POST    | api/v1/mob/auth/verify-registration         | verifies user registration            |
-| POST    | api/v1/mob/auth/send-reset-password-link    | sends password reset link             |
-| POST    | api/v1/mob/auth/change-password             | changes logged in account password    |
-| POST    | api/v1/mob/auth/reset-password              | Resets a user                         |
-
+| REQUEST | ROUTE                                       | FUNCTIONALITY                                 |
+| ------- | ----------------------------------------    | ----------------------------------------------|
+| POST    | api/v1/mob/auth/login/                      | Logs in a user                                |
+| POST    | api/v1/mob/auth/signup/                     | Registers a user                              |
+| POST    | api/v1/mob/auth/logout/                     | Logsout a user                                |
+| POST    | api/v1/mob/auth/verify-email/               | verifies email                                |
+| POST    | api/v1/mob/auth/resend-email/               | resend verify email                           |
+| POST    | api/v1/mob/auth/password/reset/             | sends password reset link                     |
+| POST    | api/v1/mob/auth/password/reset/confirm/     | confirms password reset and sets new password |
+| POST    | api/v1/mob/auth/password/change/            | changes logged in account password            |
 
 ### PATIENTS
 
 | REQUEST | ROUTE                        | FUNCTIONALITY                             |
 | ------- | ---------------------------- | ----------------------------------------- |
 | GET     | api/v1/patients              | Fetches all patients                      |
-
 
 ### USERS
 
@@ -109,14 +111,15 @@ In windows
 | GET     | api/v1/web/auth/profile/<int:pk>    | Fetches user profile     |
 | PUT     | api/v1/web/auth/profile/<int:pk>    | Edits a user profile     |
 | GET     | api/v1/web/auth/user/<int:pk>       | Fetches a users details  |
-| PUT     | api/v1/web/auth/user/<int:pk>       | Edits a users details  |
-| GET     | api/v1/mob/auth/profile/            | Fetches a users details  |
-| PUT     | api/v1/mob/auth/profile/            | Edits a users details  |
+| PUT     | api/v1/web/auth/user/<int:pk>       | Edits a users details    |
+| GET     | api/v1/mob/auth/user/               | Fetches a users details  |
+| PUT     | api/v1/mob/auth/user/               | Edits a users details  |
 
 ### SWAGGER API DOCUMENTATION
+
 | REQUEST | ROUTE                        | FUNCTIONALITY            |
 | ------- | ---------------------------- | ------------------------ |
-| GET     | api/v1/swagger<format>/      | Fetches API documentation summary view          |
+| GET     | api/v1/swagger/      | Fetches API documentation summary view          |
 | PUT     | api/v1/redoc/                | Details of API                     |
 
 ### ADMIN SITE
@@ -133,21 +136,26 @@ Open this collection in postman by clicking the button below:
 
 If you're using Postman for testing the REST api, you can use the following setup:
 
--   Make sure you have an environment set for your collection.
+### TESTING AUTHENTICATION BACKEND
 
--   POST to `http://localhost:8000/api/v1/web/auth/signup` and add your details to sign up on WEB
+- Make sure you have an environment set for your collection.
 
--   POST to `http://localhost:8000/api/v1/mob/auth/signup` and add your details to sign up on MOBILE
+- POST to `http://localhost:8000/api/v1/web/auth/signup/` and add your details to sign up on WEB
 
--   POST to `http://localhost:8000/api/v1/web/auth/login/` to obtain token for WEB
+- POST to `http://localhost:8000/api/v1/mob/auth/signup/` and add your details to sign up on MOBILE
 
--   POST to `http://localhost:8000/api/v1/mob/auth/login/` to obtain token for MOBILE
+- POST to `http://localhost:8000/api/v1/web/auth/login/` to login and obtain token for WEB
 
--   Paste this code in Tests which will save the token to the environment.
+- POST to `http://localhost:8000/api/v1/mob/auth/login/` to login and obtain token for MOBILE
 
--   In the Authorization section of your subsequent posts, set the Authorization type as Bearer Token and add {{token}}
-    in the token section
+- Paste this code in Tests which will save the token to the environment.
 
+- In the Authorization section of your subsequent posts, set the CSRF Token given in login cookie on X-CSRFToken header
+    for every Post request.
+
+- POST to `http://localhost:8000/api/v1/web/auth/login/` to logout session for WEB
+
+- POST to `http://localhost:8000/api/v1/mob/auth/login/` to logout session for MOBILE
 
 ## Authors
 

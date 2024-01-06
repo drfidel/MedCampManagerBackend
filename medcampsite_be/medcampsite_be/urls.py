@@ -54,12 +54,12 @@ urlpatterns = [
     path('api/v1/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/v1/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     
-    path('api/v1/mob/', include('dj_rest_auth.urls')),
-    path('api/v1/mob/signup/', include('dj_rest_auth.registration.urls')),
-    path('api/v1/mob/password/reset/confirm/<str:uidb64>/<str:token>', PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
+    path('api/v1/mob/auth/', include('dj_rest_auth.urls')),
+    path('api/v1/mob/auth/signup/', include('dj_rest_auth.registration.urls')),
+    path('api/v1/mob/auth/password/reset/confirm/<str:uidb64>/<str:token>', PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     
-    path('api/v1/mob/app/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/v1/mob/app/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/v1/mob/auth/app/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/v1/mob/auth/app/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
 

@@ -30,7 +30,7 @@ urlpatterns = [
     path('profile/<int:pk>', ProfileView.as_view()),
     path('user/<int:pk>', UserEditView.as_view()),
     path('password/reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
-    path('password/reset/confirm', include('django_rest_passwordreset.urls', namespace='password_reset_confirm')),
+    path('password/reset/confirm/', include('django_rest_passwordreset.urls', namespace='password_reset_confirm')),
 
 ]
 
