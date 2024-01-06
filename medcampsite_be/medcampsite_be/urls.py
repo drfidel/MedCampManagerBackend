@@ -55,6 +55,7 @@ urlpatterns = [
     path('api/v1/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     
     path('api/v1/mob/', include('dj_rest_auth.urls')),
+    path('api/v1/mob/signup/', include('dj_rest_auth.registration.urls')),
     path('api/v1/mob/password/reset/confirm/<str:uidb64>/<str:token>', PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     
     path('api/v1/mob/app/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
