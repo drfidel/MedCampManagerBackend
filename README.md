@@ -63,7 +63,14 @@ In windows
 `python manage.py makemigrations --settings=medcampsite_be.settings.local`
 `python manage.py migrate --settings=medcampsite_be.settings.local`
 `python manage.py createsuperuser --settings=medcampsite_be.settings.local`
-`python manage.py runserver --settings=medcampsite_be.settings.local`
+`python manage.py runserver --settings=medcampsite_be.settings.local 5050`
+
+- create and modify working patient data using fixtures
+`python manage.py dumpdata patients --indent=2 --output=patients/fixtures/patients.json --settings=medcampsite_be.settings.local`
+
+- upload your list with the folling command
+`python manage.py loadata patients.json --settings=medcampsite_be.settings.local`
+
 
 - Navigate to `http://localhost:8000/api/v1/index` to view the running application and get started
 
@@ -100,9 +107,11 @@ In windows
 
 ### PATIENTS
 
-| REQUEST | ROUTE                        | FUNCTIONALITY                             |
-| ------- | ---------------------------- | ----------------------------------------- |
-| GET     | api/v1/patients              | Fetches all patients                      |
+| REQUEST | ROUTE                                 | FUNCTIONALITY                             |
+| ------- | ------------------------------------- | ----------------------------------------- |
+| GET     | api/v1/data/patients                  | Fetches all patients                      |
+| GET     | api/v1/data/patients/<int:pk>         | Fetches all patients                      |
+| PUT     | api/v1/data/patients/<int:pk>         | Edit single patients                      |
 
 ### USERS
 

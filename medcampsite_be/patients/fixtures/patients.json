@@ -1,0 +1,90 @@
+[
+{
+  "model": "patients.patient",
+  "pk": 1,
+  "fields": {
+    "pt_salutation": "Mr",
+    "pt_firstname": "John",
+    "pt_surname": "Amuga",
+    "pt_gender": "M",
+    "pt_age": "12",
+    "pt_profession": "STU",
+    "pt_contact": "0782-256-523",
+    "pt_religion": "Catholic",
+    "pt_village": "Kabalagala",
+    "pt_parish": "Kabalagala",
+    "pt_subcounty": "Makindye",
+    "pt_district": "Kampala",
+    "pt_nationality": "Ugandan",
+    "pt_nin": "CM90120012FJ2M",
+    "pt_photo": "patients/2024/01/08/cat2_F6ejjXx.png",
+    "visit_date": "2024-01-08T19:54:13.118Z"
+  }
+},
+{
+  "model": "patients.patient",
+  "pk": 2,
+  "fields": {
+    "pt_salutation": "Dr",
+    "pt_firstname": "Kalos",
+    "pt_surname": "Plos",
+    "pt_gender": "F",
+    "pt_age": "15",
+    "pt_profession": "PES",
+    "pt_contact": "0785-562-586",
+    "pt_religion": "Catholic",
+    "pt_village": "Kamwenge",
+    "pt_parish": "Kamwenge",
+    "pt_subcounty": "Kamwenge",
+    "pt_district": "Kamwenge",
+    "pt_nationality": "Ugandan",
+    "pt_nin": "CF458965233FJ4J",
+    "pt_photo": "patients/2024/01/08/cat1.png",
+    "visit_date": "2024-01-08T20:16:51.928Z"
+  }
+},
+{
+  "model": "patients.patient",
+  "pk": 3,
+  "fields": {
+    "pt_salutation": "Eng",
+    "pt_firstname": "Johnny",
+    "pt_surname": "Amugati",
+    "pt_gender": "M",
+    "pt_age": "12",
+    "pt_profession": "STU",
+    "pt_contact": "0782-256-523",
+    "pt_religion": "Catholic",
+    "pt_village": "Kabalagala",
+    "pt_parish": "Kabalagala",
+    "pt_subcounty": "Makindye",
+    "pt_district": "Kampalani",
+    "pt_nationality": "Ugandan",
+    "pt_nin": "CM90120082FJ2M",
+    "pt_photo": "patients/2024/01/08/cat2_F6ejjXx.png",
+    "visit_date": "2024-01-08T19:54:13.118Z"
+  }
+},
+{
+  "model": "patients.patient",
+  "pk": 4,
+  "fields": {
+    "pt_salutation": "Mrs",
+    "pt_firstname": "Kalosd",
+    "pt_surname": "Plosd",
+    "pt_gender": "F",
+    "pt_age": "25",
+    "pt_profession": "PES",
+    "pt_contact": "0785-562-586",
+    "pt_religion": "Catholic",
+    "pt_village": "Kamwenge",
+    "pt_parish": "Kamwenge",
+    "pt_subcounty": "Kamwenge",
+    "pt_district": "Kamwenge",
+    "pt_nationality": "Ugandan",
+    "pt_nin": "CF458985233FJ4J",
+    "pt_photo": "patients/2024/01/08/cat1.png",
+    "visit_date": "2024-01-08T20:16:51.928Z"
+  }
+}
+]
