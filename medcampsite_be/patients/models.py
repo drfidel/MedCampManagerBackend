@@ -32,22 +32,22 @@ class Patient(models.Model):
         PEASANT = 'PES','Peasant'
         STUDENT = 'STU','Student'
 
-    pt_salutation = models.CharField(max_length=255)
-    pt_firstname = models.CharField(max_length=255)
-    pt_surname = models.CharField(max_length=255)
-    pt_gender = models.CharField(max_length=2,choices=Gender.choices, default=Gender.FEMALE)
-    pt_age = models.CharField(max_length=255)
-    pt_profession = models.CharField(max_length=3,choices=Profession.choices, default=Profession.PEASANT)
-    pt_contact = models.CharField(max_length=255)
-    pt_religion = models.CharField(max_length=255)
-    pt_village = models.CharField(max_length=255)
-    pt_parish = models.CharField(max_length=255)
-    pt_subcounty = models.CharField(max_length=255)
-    pt_district = models.CharField(max_length=255)
-    pt_nationality = models.CharField(max_length=255)
-    pt_nin = models.CharField(max_length=255)
+    pt_salutation = models.CharField(max_length=255,blank=True, null=True)
+    pt_firstname = models.CharField(max_length=255,blank=True, null=True)
+    pt_surname = models.CharField(max_length=255,blank=True, null=True)
+    pt_gender = models.CharField(max_length=2,choices=Gender.choices, default=Gender.FEMALE,blank=True, null=True)
+    pt_age = models.CharField(max_length=255,blank=True, null=True)
+    pt_profession = models.CharField(max_length=3,choices=Profession.choices, default=Profession.PEASANT,blank=True, null=True)
+    pt_contact = models.CharField(max_length=255,blank=True, null=True)
+    pt_religion = models.CharField(max_length=255,blank=True, null=True)
+    pt_village = models.CharField(max_length=255,blank=True, null=True)
+    pt_parish = models.CharField(max_length=255,blank=True, null=True)
+    pt_subcounty = models.CharField(max_length=255,blank=True, null=True)
+    pt_district = models.CharField(max_length=255,blank=True, null=True)
+    pt_nationality = models.CharField(max_length=255,blank=True, null=True)
+    pt_nin = models.CharField(max_length=255,blank=True, null=True)
     pt_photo = models.ImageField(upload_to='patients/%Y/%m/%d/',blank=True)
-    visit_date = models.DateTimeField(auto_now_add=True)
+    visit_date = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         ordering = ['id']
@@ -58,6 +58,9 @@ class Patient(models.Model):
 
 class Encounter(models.Model):
     identity = models.ForeignKey('Patient', related_name='patient', on_delete=models.CASCADE)
+    pt_name = models.CharField(max_length=255, blank=True, null=True)
+    pt_sex = models.CharField(max_length=255, blank=True, null=True)
+    pt_age = models.CharField(max_length=255, blank=True, null=True)
     presenting_complaint = models.CharField(max_length=255, blank=True, null=True)
     diagnosis = models.CharField(max_length=255, blank=True, null=True)
     prescription = models.CharField(max_length=255, blank=True, null=True)
