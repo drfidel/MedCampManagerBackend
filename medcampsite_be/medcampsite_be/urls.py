@@ -62,6 +62,7 @@ urlpatterns = [
     path('api/v1/mob/auth/app/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('api/v1/data/', include('patients.urls')),
+    path('api/v1/stock/', include('inventory.urls')),
 ]
 
 if settings.DEBUG:
